@@ -1,5 +1,5 @@
 # projetos-python-curso-em-video
-# Projetos - Curso em Vídeo (Python)
+# python-learning-projects
 
 Este repositório reúne os projetos desenvolvidos durante meus estudos de Python utilizando o Curso em Vídeo.
 
