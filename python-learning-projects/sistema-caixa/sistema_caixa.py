@@ -17,7 +17,7 @@ opcao_pagamento = int(input(
     "1 - PIX\n"
     "2 - Dinheiro\n"
     "3 - Cartão\n"
-    "Opção: "
+    "Opção:   "
 ))
 
 # Valores iniciais
