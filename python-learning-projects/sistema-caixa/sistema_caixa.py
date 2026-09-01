@@ -13,7 +13,7 @@ produtos = []
 #Produtos Cadastrados
 tipos_produtos = int(input('Quantos produtos diferentes serão cadastrados? '))
 
-#Estrutura condicional for pra cada contagem de produtos
+#Estrutura repitção for pra cada contagem de produtos
 
 for tipos_produtos in range(tipos_produtos):
    
