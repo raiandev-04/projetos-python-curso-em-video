@@ -22,10 +22,16 @@ for tipos_produtos in range(tipos_produtos):
     quantidade_produto = int(input("Informe a quantidade do produto: "))
     subtotal = preco_produto * quantidade_produto
     total_cadastrados += subtotal
-    produtos.append([nome_produto, 
-                     preco_produto,
-                       quantidade_produto,
-                         subtotal])
+    # Cada produto é armazenado como uma TUPLA
+    produto = (
+        nome_produto,
+        preco_produto,
+        quantidade_produto,
+        subtotal
+    )
+
+    # A tupla é adicionada à lista de produtos
+    produtos.append(produto)
 
 print(f'Esse foi o total do subtotal da compra:R${total_cadastrados} ')
 
