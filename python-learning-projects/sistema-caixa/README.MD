@@ -1,89 +1,227 @@
 # Sistema de Caixa em Python
 
-Projeto desenvolvido com o objetivo de praticar e consolidar os fundamentos de Python aprendidos durante meus estudos.
+Projeto desenvolvido durante meus estudos de Python com o objetivo de praticar, na prática, os principais fundamentos da linguagem.
 
-O sistema simula um caixa simples, permitindo cadastrar diferentes produtos, calcular o valor total da compra, aplicar descontos conforme a forma de pagamento, validar entradas e gerar um recibo organizado no final da operação.
+A ideia começou como um caixa simples, com cadastro de um único produto, cálculo de subtotal e escolha da forma de pagamento. Com o avanço dos estudos, fui incrementando novas funcionalidades e aplicando novos conceitos conforme fui aprendendo.
 
-## Funcionalidades
+Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em lista e tuplas, remover itens antes de finalizar a compra, consultar a quantidade de produtos cadastrados, aplicar descontos, validar formas de pagamento e gerar um recibo ao final.
 
-* Cadastro do nome do cliente
-* Cadastro de vários tipos de produtos
-* Definição de preço e quantidade de cada produto
-* Cálculo automático do subtotal de cada produto
-* Cálculo do valor total da compra
-* Armazenamento dos produtos em lista
-* Escolha da forma de pagamento
-* Validação da forma de pagamento
-* Desconto de acordo com a forma de pagamento
-* Validação de valor insuficiente para pagamentos em dinheiro
-* Cálculo automático do troco
-* Geração de recibo
-* Numeração dos produtos cadastrados no recibo
+## Funcionalidades atuais
+
+- Cadastro do nome do cliente
+- Cadastro de vários produtos
+- Cadastro de preço e quantidade de cada produto
+- Cálculo automático do subtotal
+- Soma automática do valor total da compra
+- Armazenamento dos produtos em lista
+- Armazenamento dos dados de cada produto em tupla
+- Menu antes da finalização da compra
+- Remoção de produtos cadastrados
+- Atualização automática do valor total após remover um produto
+- Consulta da quantidade de produtos cadastrados
+- Escolha da forma de pagamento
+- Validação de opção inválida
+- Desconto conforme a forma de pagamento
+- Validação de valor insuficiente em pagamentos em dinheiro
+- Cálculo automático do troco
+- Geração de recibo com os produtos cadastrados
 
 ## Formas de pagamento
 
-O sistema atualmente trabalha com três formas de pagamento:
+O sistema trabalha atualmente com:
 
-* PIX
-* Dinheiro
-* Cartão
+- PIX
+- Dinheiro
+- Cartão
 
-As regras de desconto são aplicadas sobre o valor total da compra.
+As regras atuais são:
 
-## Conceitos de Python praticados
+- PIX: 10% de desconto
+- Dinheiro: 5% de desconto
+- Cartão: sem desconto
 
-Durante o desenvolvimento deste projeto foram utilizados:
+No recibo, o sistema apresenta apenas as informações que fazem sentido para cada forma de pagamento.
 
-* Variáveis
-* `input()`
-* Conversão de tipos com `int()` e `float()`
-* Operadores matemáticos
-* Estruturas condicionais `if`, `elif` e `else`
-* Estrutura de repetição `for`
-* Estrutura de repetição `while`
-* `while True`
-* Uso de `break`
-* Listas
-* Método `append()`
-* Função `range()`
-* Função `enumerate()`
-* F-strings
-* Formatação de valores monetários
-* Acumuladores
-* Validação de dados
+Para PIX e cartão, é exibido o valor final da compra.
 
-## Uso do FOR
+Para pagamentos em dinheiro, são exibidos:
 
-O `for` é utilizado principalmente no cadastro dos produtos.
+- Valor final
+- Valor pago
+- Troco
 
-O usuário informa quantos tipos diferentes de produtos deseja cadastrar e o sistema repete o processo de cadastro de acordo com essa quantidade.
+## Menu da compra
 
-Também é utilizado na impressão do recibo para percorrer a lista de produtos cadastrados.
+Depois do cadastro dos produtos, o usuário pode escolher entre:
 
-## Uso do WHILE
+```text
+1 - Finalizar compra
+2 - Remover produto
+3 - Ver quantidade de produtos cadastrados
+```
 
-O projeto utiliza `while` em situações onde não é possível determinar antecipadamente quantas repetições serão necessárias.
+### Remoção de produto
 
-### Validação da forma de pagamento
+Ao escolher remover um produto, o sistema mostra os itens cadastrados de forma numerada.
 
-O sistema continua solicitando uma opção enquanto o usuário não escolher uma forma de pagamento válida.
+Exemplo:
 
-### Validação do pagamento em dinheiro
+```text
+1 - Maçã
+2 - Banana
+3 - Laranja
+```
 
-Quando a opção escolhida é dinheiro, o sistema continua solicitando o valor pago enquanto ele for menor que o valor final da compra.
+O usuário escolhe o número correspondente ao produto desejado.
+
+A remoção é feita utilizando a posição do item na lista e, depois disso, o valor total da compra também é atualizado.
+
+### Quantidade de produtos
+
+O sistema também permite consultar quantos produtos diferentes ainda estão cadastrados na compra.
 
 ## Estrutura dos produtos
 
-Cada produto cadastrado possui:
+A lista principal é utilizada para armazenar todos os produtos:
 
-* Nome
-* Preço unitário
-* Quantidade
-* Subtotal
+```python
+produtos = []
+```
 
-Essas informações são armazenadas em uma lista para posteriormente serem utilizadas na geração do recibo.
+Cada produto é armazenado como uma tupla contendo:
 
-## Exemplo de funcionamento
+```text
+Nome
+Preço unitário
+Quantidade
+Subtotal
+```
+
+Exemplo:
+
+```python
+("Maçã", 5.00, 2, 10.00)
+```
+
+Com vários produtos cadastrados, a estrutura fica semelhante a:
+
+```python
+[
+    ("Maçã", 5.00, 2, 10.00),
+    ("Banana", 3.00, 1, 3.00),
+    ("Laranja", 4.00, 3, 12.00)
+]
+```
+
+A lista pode receber e remover produtos durante a execução, enquanto cada tupla representa os dados de um produto cadastrado.
+
+## Conceitos de Python praticados
+
+Durante a evolução deste projeto foram utilizados:
+
+- Variáveis
+- `input()`
+- `int()`
+- `float()`
+- Operadores matemáticos
+- Acumuladores
+- `if`
+- `elif`
+- `else`
+- `for`
+- `while`
+- `while True`
+- `break`
+- Listas
+- Tuplas
+- `append()`
+- `pop()`
+- `len()`
+- `range()`
+- `enumerate()`
+- Operador `in`
+- Índices
+- F-strings
+- Formatação de valores monetários
+
+## Uso do FOR
+
+O `for` é utilizado no cadastro dos produtos.
+
+O usuário informa quantos tipos diferentes deseja cadastrar e o programa repete o processo conforme essa quantidade.
+
+Também é utilizado em outros pontos, como:
+
+- exibição dos produtos disponíveis para remoção;
+- impressão dos produtos no recibo;
+- numeração dos itens com `enumerate()`.
+
+## Uso do WHILE
+
+O projeto possui diferentes usos de `while`.
+
+### Menu principal da compra
+
+O menu utiliza:
+
+```python
+while True:
+```
+
+Ele continua sendo exibido enquanto o usuário não escolher finalizar a compra.
+
+### Forma de pagamento
+
+Também é utilizado um `while True` para impedir que o sistema avance caso o usuário informe uma opção de pagamento inválida.
+
+### Pagamento em dinheiro
+
+Nesse caso, o `while` utiliza uma condição.
+
+Enquanto o valor pago for menor que o valor final da compra, o sistema continua solicitando um novo valor.
+
+## Evolução do projeto
+
+O projeto foi sendo construído de forma incremental, acompanhando minha evolução nos estudos.
+
+### Primeira versão
+
+- Cadastro de um produto
+- Cálculo de subtotal
+- Forma de pagamento
+- Desconto
+- Troco
+- Recibo simples
+
+### Implementação do FOR
+
+- Cadastro de vários produtos
+- Repetição automática do processo de cadastro
+- Soma dos subtotais
+- Exibição de vários produtos no recibo
+
+### Implementação do WHILE
+
+- Validação da forma de pagamento
+- Repetição em caso de opção inválida
+- Validação de pagamento insuficiente em dinheiro
+
+### Implementação de tuplas
+
+- Cada produto passou a ser representado por uma tupla
+- Nome, preço, quantidade e subtotal ficaram agrupados em uma única estrutura
+
+### Evolução com listas
+
+- Lista utilizada para armazenar os produtos
+- Uso de `append()` para adicionar produtos
+- Uso de `len()` para consultar a quantidade cadastrada
+- Uso de `pop()` para remover produtos
+- Uso de índices para selecionar itens
+- Atualização do valor total após uma remoção
+- Criação de um menu para manipular a compra antes da finalização
+
+## Exemplo de fluxo
 
 ```text
 =========================
@@ -105,66 +243,58 @@ Informe a quantidade do produto: 1
 Informe o nome do produto: Laranja
 Informe o preço do produto: R$ 3
 Informe a quantidade do produto: 3
+
+Digite uma opção:
+
+1 - Finalizar compra
+2 - Remover produto
+3 - Ver quantidade de produtos cadastrados
 ```
 
-Ao final, o sistema apresenta um recibo com os produtos, subtotais, total da compra, desconto, forma de pagamento e valor final.
+O usuário pode revisar a compra antes de seguir para o pagamento.
 
-## Evolução do projeto
-
-O projeto foi desenvolvido de forma incremental durante meus estudos de Python.
-
-### Versão inicial
-
-* Cadastro de um único produto
-* Cálculo de subtotal
-* Escolha da forma de pagamento
-* Cálculo de desconto
-* Cálculo de troco
-* Impressão de recibo
-
-### Implementação do FOR
-
-Posteriormente, o sistema passou a permitir:
-
-* Cadastro de vários produtos
-* Uso de listas
-* Armazenamento dos produtos cadastrados
-* Soma automática dos subtotais
-* Impressão de vários produtos no recibo
-* Uso de `enumerate()` para organizar a exibição dos produtos
-
-### Implementação do WHILE
-
-Na evolução seguinte foram adicionadas:
-
-* Validação da forma de pagamento
-* Repetição automática em caso de opção inválida
-* Validação do valor pago em dinheiro
-* Repetição enquanto o valor informado for insuficiente
+Depois disso, o sistema solicita a forma de pagamento e gera o recibo final.
 
 ## Próximas melhorias
 
-Algumas melhorias que poderão ser implementadas futuramente:
+O projeto continua aberto para evoluções conforme avanço nos estudos de Python.
 
-* Validar preços negativos
-* Validar quantidades inválidas
-* Permitir cadastrar produtos até o usuário decidir encerrar
-* Permitir realizar uma nova venda sem reiniciar o programa
-* Separar o código em funções
-* Criar histórico de vendas
-* Salvar dados em arquivos
-* Implementar tratamento de erros
-* Evoluir futuramente para banco de dados
-* Criar uma interface para o sistema
+Algumas melhorias que pretendo explorar futuramente:
+
+- Validar números de produtos inexistentes na remoção
+- Impedir cadastro de valores negativos
+- Impedir quantidades inválidas
+- Tratar entradas que não sejam números
+- Permitir adicionar novos produtos pelo próprio menu
+- Permitir realizar uma nova venda sem reiniciar o programa
+- Separar partes do sistema em funções
+- Criar histórico de vendas
+- Salvar dados em arquivos
+- Trabalhar com tratamento de erros
+- Evoluir futuramente para banco de dados
+- Criar uma interface para o sistema
 
 ## Objetivo do projeto
 
-Este projeto foi desenvolvido principalmente como exercício de consolidação dos fundamentos de Python.
+Este projeto não foi criado com a intenção de ser um sistema comercial completo.
 
-A intenção é aplicar os conceitos estudados em um problema próximo de uma situação real, evoluindo o sistema gradualmente conforme novos conhecimentos forem adquiridos.
+O objetivo principal é servir como um projeto de aprendizado, onde consigo aplicar os conceitos estudados em uma situação prática e acompanhar minha própria evolução na linguagem Python.
+
+Em vez de criar tudo de uma vez, estou desenvolvendo o sistema aos poucos, adicionando novas funcionalidades conforme aprendo novos conteúdos.
 
 ## Status
 
-Fundamentos do projeto concluídos.
+Projeto de estudos em desenvolvimento.
 
-O projeto continua aberto para melhorias conforme avanço nos estudos de Python.
+Atualmente já foram aplicados conceitos de:
+
+```text
+Variáveis
+→ Condicionais
+→ FOR
+→ WHILE
+→ Tuplas
+→ Listas
+```
+
+Novas funcionalidades serão adicionadas conforme o avanço nos estudos de Python.
