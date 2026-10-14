@@ -4,6 +4,8 @@ print("SISTEMA CAIXA".center(25))
 print("=" * 25)
 
 total_cadastrados = 0
+subMaior= unidMaior = 0
+maiorSub = maiorUnid =''
 
 # ===== Entrada de dados =====
 nome_cliente = input("Informe seu nome: ")
@@ -33,6 +35,8 @@ for contador_produtos in range(tipos_produtos):
 
     # A tupla é adicionada à lista de produtos
     produtos.append(produto)
+
+#Laço de repetição que permite o usuario escolha uma condição verdadeira
 while True:
     menu= int(input('Digite uma opção:\n' \
     '1 - Finalizar compra\n' \
@@ -60,6 +64,19 @@ while True:
         print('Opção inválida!')
 
 print(f'Esse foi o total do subtotal da compra:R${total_cadastrados} ')
+
+#Analisa os produtos da compra para identificar os maiores valores registrados
+for prod in produtos:
+
+    #Compara os subtotais e guarda o produto com o maior valor
+    if prod[3] > subMaior:
+        subMaior = prod[3]
+        maiorSub = prod[0]
+    # Compara as quantidades e guarda o produto com mais unidades
+    if prod[2] > unidMaior:
+        unidMaior = prod[2]
+        maiorUnid = prod[0]
+
 
 # ===== Forma de pagamento =====
 
@@ -91,8 +108,6 @@ while True:
         break
     else:
         print('Operação invalida.')
-
-
         
 # ===== Valor final =====
 valor_final = total_cadastrados - desconto
@@ -117,7 +132,7 @@ print("RECIBO".center(largura))
 print("=" * largura)
 
 print(f"Cliente: {nome_cliente}")
-print("-" * largura)
+print("=" * largura)
 
 for numero, produto in enumerate(produtos, start=1):
 
@@ -128,19 +143,27 @@ for numero, produto in enumerate(produtos, start=1):
     print(f"Subtotal: R$ {produto[3]:.2f}")
     print("-" * largura)
 
+print("RESUMO COMPRA".center(largura))
+
+print('-' * largura)
+print(f'Maior subtotal: {maiorSub} - R$ {subMaior:.2f}')
+print(f'Maior quantidade: {maiorUnid} - {unidMaior} Unidades')
+
+print('-' *  largura) 
+
 print(f"Total da compra:   R${total_cadastrados:.2f}")
 print(f"Forma Pagamento:   {forma_pagamento}")
 if opcao_pagamento in [1,2]: print(f"Desconto:          R${desconto:.2f}")
 if opcao_pagamento in [1, 3]:
     print(f"Valor Final:        R${valor_final:.2f}")
 else:
-    print(f'Valor Final:        R${valor_final}')
+    print(f'Valor Final:        R${valor_final:.2f}')
     print(f'Valor Pago:         R${valor_pago:.2f}')
     print(f"Troco:             R${troco:.2f}")
 
 
 print("=" * largura)
-print(f"Obrigado, {nome_cliente}!".center(largura))
+print(f"Obrigado, {nome_cliente}.".center(largura))
 print("Volte sempre!".center(largura))
 print("=" * largura)
 
