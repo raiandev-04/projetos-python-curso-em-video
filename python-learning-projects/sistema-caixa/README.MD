@@ -25,6 +25,12 @@ Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em lis
 - Validação de valor insuficiente em pagamentos em dinheiro
 - Cálculo automático do troco
 - Geração de recibo com os produtos cadastrados
+- Remoção de produtos antes da finalização da compra
+- Atualização automática do valor total após remover um produto
+- Consulta da quantidade de produtos cadastrados
+- Identificação do produto com maior subtotal
+- Identificação do produto com maior quantidade de unidades
+- Resumo estatístico da compra no recibo
 
 ## Formas de pagamento
 
@@ -58,11 +64,12 @@ Depois do cadastro dos produtos, o usuário pode escolher entre:
 1 - Finalizar compra
 2 - Remover produto
 3 - Ver quantidade de produtos cadastrados
+4 - Ao remover um produto, o sistema também atualiza automaticamente o valor total da compra, retirando o subtotal correspondente ao item removido.
 ```
 
 ### Remoção de produto
 
-Ao escolher remover um produto, o sistema mostra os itens cadastrados de forma numerada.
+Os produtos cadastrados são exibidos de forma numerada utilizando enumerate(). O usuário escolhe o número correspondente e o item é removido da lista com pop().
 
 Exemplo:
 
@@ -72,9 +79,7 @@ Exemplo:
 3 - Laranja
 ```
 
-O usuário escolhe o número correspondente ao produto desejado.
-
-A remoção é feita utilizando a posição do item na lista e, depois disso, o valor total da compra também é atualizado.
+Após a remoção, o subtotal daquele produto também é descontado do valor total da compra.
 
 ### Quantidade de produtos
 
@@ -115,6 +120,15 @@ Com vários produtos cadastrados, a estrutura fica semelhante a:
 
 A lista pode receber e remover produtos durante a execução, enquanto cada tupla representa os dados de um produto cadastrado.
 
+## Resumo da compra
+
+Depois que o usuário finaliza a revisão dos produtos, o sistema percorre a lista final da compra para identificar:
+
+- Produto com maior subtotal
+- Produto com maior quantidade de unidades
+
+Essa análise é feita somente após possíveis remoções, garantindo que os dados apresentados correspondam aos produtos que realmente permaneceram na compra.
+
 ## Conceitos de Python praticados
 
 Durante a evolução deste projeto foram utilizados:
@@ -143,6 +157,10 @@ Durante a evolução deste projeto foram utilizados:
 - Índices
 - F-strings
 - Formatação de valores monetários
+- Busca pelo maior valor em uma coleção
+- Comparação de recordes com if
+- Atualização de acumuladores
+- Combinação de for, while e estruturas condicionais
 
 ## Uso do FOR
 
@@ -180,9 +198,16 @@ Nesse caso, o `while` utiliza uma condição.
 
 Enquanto o valor pago for menor que o valor final da compra, o sistema continua solicitando um novo valor.
 
+### Estatísticas da compra
+
+Nesta etapa foi adicionada uma análise dos produtos cadastrados utilizando estruturas de repetição e condicionais.
+
+O sistema passou a identificar o produto com maior subtotal e o produto com maior quantidade de unidades, exibindo essas informações no resumo da compra.
+
 ## Evolução do projeto
 
 O projeto foi sendo construído de forma incremental, acompanhando minha evolução nos estudos.
+
 
 ### Primeira versão
 
@@ -273,6 +298,8 @@ Algumas melhorias que pretendo explorar futuramente:
 - Trabalhar com tratamento de erros
 - Evoluir futuramente para banco de dados
 - Criar uma interface para o sistema
+- Permitir remover apenas algumas unidades de um produto sem excluir o item inteiro
+- Atualizar automaticamente a quantidade e o subtotal após uma remoção parcial
 
 ## Objetivo do projeto
 
