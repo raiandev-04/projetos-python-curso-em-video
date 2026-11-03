@@ -50,12 +50,12 @@ while True:
 
     elif menu == 2:
         for numero, produto in enumerate(produtos, start=1):
-            print(f'{numero} - {produto[0]}')
+            print(f'{numero} - {produto["nome"]}')
             
         remover = int(input('Digite o número do produto que deseja remover: '))
-        produto_removido = produtos.pop(remover - 1)
-        total_cadastrados -= produto_removido[3]
-        print(f'{produto_removido[0]} foi removido.')
+        produto['quantidade'] = produtos.pop(remover - 1)
+        total_cadastrados -= produto['subtotal']
+        print(f'{produto["nome"]} foi removido.')
 
     elif menu == 3:
         print(f'A quantidade escolhida: {len(produtos)}')
