@@ -24,7 +24,7 @@ for contador_produtos in range(tipos_produtos):
     produto['nome']= input("Informe o nome do produto: ")
     produto['preço'] = float(input("Informe o preço do produto: R$ "))
     produto['quantidade'] = int(input("Informe a quantidade do produto: "))
-    produto['subtotal'] = produto['preco'] * produto['quantidade']
+    produto['subtotal'] = produto['preço'] * produto['quantidade']
     total_cadastrados += produto['subtotal']
    
     #nome_produto = input("Informe o nome do produto: ")
@@ -53,12 +53,16 @@ while True:
             print(f'{numero} - {produto["nome"]}')
             
         remover = int(input('Digite o número do produto que deseja remover: '))
-        produto['quantidade'] = produtos.pop(remover - 1)
+        produto_removido = produtos.pop(remover - 1)
         total_cadastrados -= produto['subtotal']
-        print(f'{produto["nome"]} foi removido.')
+        print("-" * 35)
+        print(f'{produto_removido["nome"]} foi removido.')
+        print("-" * 35)
 
     elif menu == 3:
-        print(f'A quantidade escolhida: {len(produtos)}')
+        print("-" * 35)
+        print(f'Você cadastrou: {len(produtos)} produtos')
+        print("-" * 35)
 
     else:
         print('Opção inválida!')
@@ -69,8 +73,8 @@ print(f'Esse foi o total do subtotal da compra:R${total_cadastrados} ')
 for prod in produtos:
 
     #Compara os subtotais e guarda o produto com o maior valor
-    if prod['subtototal'] > subMaior:
-        subMaior = prod['quantidade']
+    if prod['subtotal'] > subMaior:
+        subMaior = prod['subtotal']
         maiorSub = prod['nome']
     # Compara as quantidades e guarda o produto com mais unidades
     if prod['quantidade'] > unidMaior:
