@@ -22,7 +22,7 @@ tipos_produtos = int(input('Quantos produtos diferentes serão cadastrados? '))
 for contador_produtos in range(tipos_produtos):
 
     produto['nome']= input("Informe o nome do produto: ")
-    produto['preco'] = float(input("Informe o preço do produto: R$ "))
+    produto['preço'] = float(input("Informe o preço do produto: R$ "))
     produto['quantidade'] = int(input("Informe a quantidade do produto: "))
     produto['subtotal'] = produto['preco'] * produto['quantidade']
     total_cadastrados += produto['subtotal']
@@ -137,10 +137,10 @@ print("=" * largura)
 for numero, produto in enumerate(produtos, start=1):
 
     print(f"PRODUTO {numero}".center(largura))
-    print(f"Nome: {produto}")
-    print(f"Preço Unitário: R$ {produto[1]:.2f}")
-    print(f"Quantidade: {produto[2]}")
-    print(f"Subtotal: R$ {produto[3]:.2f}")
+    print(f"Nome: {produto['nome']}")
+    print(f"Preço Unitário: R$ {produto['preço']:.2f}")
+    print(f"Quantidade: {produto['quantidade']}")
+    print(f"Subtotal: R$ {produto['subtotal']:.2f}")
     print("-" * largura)
 
 print("RESUMO COMPRA".center(largura))
