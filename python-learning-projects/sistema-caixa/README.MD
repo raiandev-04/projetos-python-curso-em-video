@@ -4,7 +4,7 @@ Projeto desenvolvido durante meus estudos de Python com o objetivo de praticar, 
 
 A ideia começou como um caixa simples, com cadastro de um único produto, cálculo de subtotal e escolha da forma de pagamento. Com o avanço dos estudos, fui incrementando novas funcionalidades e aplicando novos conceitos conforme fui aprendendo.
 
-Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em lista e tuplas, remover itens antes de finalizar a compra, consultar a quantidade de produtos cadastrados, aplicar descontos, validar formas de pagamento e gerar um recibo ao final.
+Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em uma lista de dicionários, remover itens antes de finalizar a compra, consultar a quantidade de produtos cadastrados, aplicar descontos, validar formas de pagamento, gerar estatísticas da compra e emitir um recibo ao final.
 
 ## Funcionalidades atuais
 
@@ -14,7 +14,7 @@ Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em lis
 - Cálculo automático do subtotal
 - Soma automática do valor total da compra
 - Armazenamento dos produtos em lista
-- Armazenamento dos dados de cada produto em tupla
+- Armazenamento dos dados de cada produto em dicionário
 - Menu antes da finalização da compra
 - Remoção de produtos cadastrados
 - Atualização automática do valor total após remover um produto
@@ -25,9 +25,6 @@ Hoje o sistema já permite cadastrar vários produtos, armazenar os dados em lis
 - Validação de valor insuficiente em pagamentos em dinheiro
 - Cálculo automático do troco
 - Geração de recibo com os produtos cadastrados
-- Remoção de produtos antes da finalização da compra
-- Atualização automática do valor total após remover um produto
-- Consulta da quantidade de produtos cadastrados
 - Identificação do produto com maior subtotal
 - Identificação do produto com maior quantidade de unidades
 - Resumo estatístico da compra no recibo
@@ -64,12 +61,13 @@ Depois do cadastro dos produtos, o usuário pode escolher entre:
 1 - Finalizar compra
 2 - Remover produto
 3 - Ver quantidade de produtos cadastrados
-4 - Ao remover um produto, o sistema também atualiza automaticamente o valor total da compra, retirando o subtotal correspondente ao item removido.
 ```
+
+Ao remover um produto, o sistema também atualiza automaticamente o valor total da compra, retirando o subtotal correspondente ao item removido.
 
 ### Remoção de produto
 
-Os produtos cadastrados são exibidos de forma numerada utilizando enumerate(). O usuário escolhe o número correspondente e o item é removido da lista com pop().
+Os produtos cadastrados são exibidos de forma numerada utilizando `enumerate()`. O usuário escolhe o número correspondente e o item é removido da lista com `pop()`.
 
 Exemplo:
 
@@ -83,7 +81,7 @@ Após a remoção, o subtotal daquele produto também é descontado do valor tot
 
 ### Quantidade de produtos
 
-O sistema também permite consultar quantos produtos diferentes ainda estão cadastrados na compra.
+O sistema também permite consultar quantos produtos diferentes ainda estão cadastrados na compra utilizando `len()`.
 
 ## Estrutura dos produtos
 
@@ -93,32 +91,54 @@ A lista principal é utilizada para armazenar todos os produtos:
 produtos = []
 ```
 
-Cada produto é armazenado como uma tupla contendo:
+Atualmente, cada produto é representado por um dicionário contendo:
 
 ```text
-Nome
-Preço unitário
-Quantidade
-Subtotal
+nome
+preço
+quantidade
+subtotal
 ```
 
 Exemplo:
 
 ```python
-("Maçã", 5.00, 2, 10.00)
+{
+    "nome": "Maçã",
+    "preço": 5.00,
+    "quantidade": 2,
+    "subtotal": 10.00
+}
 ```
 
 Com vários produtos cadastrados, a estrutura fica semelhante a:
 
 ```python
 [
-    ("Maçã", 5.00, 2, 10.00),
-    ("Banana", 3.00, 1, 3.00),
-    ("Laranja", 4.00, 3, 12.00)
+    {
+        "nome": "Maçã",
+        "preço": 5.00,
+        "quantidade": 2,
+        "subtotal": 10.00
+    },
+    {
+        "nome": "Banana",
+        "preço": 3.00,
+        "quantidade": 1,
+        "subtotal": 3.00
+    },
+    {
+        "nome": "Laranja",
+        "preço": 4.00,
+        "quantidade": 3,
+        "subtotal": 12.00
+    }
 ]
 ```
 
-A lista pode receber e remover produtos durante a execução, enquanto cada tupla representa os dados de um produto cadastrado.
+Durante o cadastro, uma cópia do dicionário de cada produto é adicionada à lista utilizando `copy()`.
+
+Essa mudança deixou o acesso aos dados mais claro. Em vez de depender de posições numéricas, como acontecia anteriormente com as tuplas, cada informação passou a ser acessada pelo nome da sua chave.
 
 ## Resumo da compra
 
@@ -148,19 +168,22 @@ Durante a evolução deste projeto foram utilizados:
 - `break`
 - Listas
 - Tuplas
+- Dicionários
 - `append()`
 - `pop()`
 - `len()`
+- `copy()`
 - `range()`
 - `enumerate()`
 - Operador `in`
 - Índices
+- Chaves de dicionário
 - F-strings
 - Formatação de valores monetários
 - Busca pelo maior valor em uma coleção
-- Comparação de recordes com if
+- Comparação de recordes com `if`
 - Atualização de acumuladores
-- Combinação de for, while e estruturas condicionais
+- Combinação de `for`, `while` e estruturas condicionais
 
 ## Uso do FOR
 
@@ -171,6 +194,7 @@ O usuário informa quantos tipos diferentes deseja cadastrar e o programa repete
 Também é utilizado em outros pontos, como:
 
 - exibição dos produtos disponíveis para remoção;
+- análise dos produtos para identificar os maiores valores;
 - impressão dos produtos no recibo;
 - numeração dos itens com `enumerate()`.
 
@@ -207,7 +231,6 @@ O sistema passou a identificar o produto com maior subtotal e o produto com maio
 ## Evolução do projeto
 
 O projeto foi sendo construído de forma incremental, acompanhando minha evolução nos estudos.
-
 
 ### Primeira versão
 
@@ -246,6 +269,22 @@ O projeto foi sendo construído de forma incremental, acompanhando minha evoluç
 - Atualização do valor total após uma remoção
 - Criação de um menu para manipular a compra antes da finalização
 
+### Implementação de dicionários
+
+Com o avanço dos estudos, as tuplas utilizadas para representar cada produto foram substituídas por dicionários.
+
+Cada produto passou a armazenar suas informações através de chaves como nome, preço, quantidade e subtotal.
+
+Essa mudança tornou o código mais legível e facilitou a identificação das informações utilizadas em diferentes partes do sistema.
+
+Também foi utilizado `copy()` para adicionar uma cópia de cada produto à lista principal.
+
+### Estatísticas da compra
+
+Foi adicionada uma análise dos produtos cadastrados utilizando estruturas de repetição e condicionais.
+
+O sistema identifica o produto com maior subtotal e o produto com maior quantidade de unidades, exibindo essas informações no resumo da compra.
+
 ## Exemplo de fluxo
 
 ```text
@@ -278,7 +317,7 @@ Digite uma opção:
 
 O usuário pode revisar a compra antes de seguir para o pagamento.
 
-Depois disso, o sistema solicita a forma de pagamento e gera o recibo final.
+Depois disso, o sistema solicita a forma de pagamento, analisa os produtos da compra e gera o recibo final com um pequeno resumo estatístico.
 
 ## Próximas melhorias
 
@@ -322,6 +361,7 @@ Variáveis
 → WHILE
 → Tuplas
 → Listas
+→ Dicionários
 ```
 
 Novas funcionalidades serão adicionadas conforme o avanço nos estudos de Python.
