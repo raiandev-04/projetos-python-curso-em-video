@@ -10,6 +10,7 @@ maiorSub = maiorUnid =''
 # ===== Entrada de dados =====
 nome_cliente = input("Informe seu nome: ")
 produtos = []
+produto = {}
 
 print(f'Seja bem vindo Sr(a).{nome_cliente}.')
 
@@ -19,22 +20,21 @@ tipos_produtos = int(input('Quantos produtos diferentes serão cadastrados? '))
 #Estrutura repitção for pra cada contagem de produtos
 
 for contador_produtos in range(tipos_produtos):
-   
-    nome_produto = input("Informe o nome do produto: ")
-    preco_produto = float(input("Informe o preço do produto: R$ "))
-    quantidade_produto = int(input("Informe a quantidade do produto: "))
-    subtotal = preco_produto * quantidade_produto
-    total_cadastrados += subtotal
-    # Cada produto é armazenado como uma TUPLA
-    produto = (
-        nome_produto,
-        preco_produto,
-        quantidade_produto,
-        subtotal
-    )
 
-    # A tupla é adicionada à lista de produtos
-    produtos.append(produto)
+    produto['nome']= input("Informe o nome do produto: ")
+    produto['preco'] = float(input("Informe o preço do produto: R$ "))
+    produto['quantidade'] = int(input("Informe a quantidade do produto: "))
+    produto['subtotal'] = produto['preco'] * produto['quantidade']
+    total_cadastrados += produto['subtotal']
+   
+    #nome_produto = input("Informe o nome do produto: ")
+    #preco_produto = float(input("Informe o preço do produto: R$ "))
+    #quantidade_produto = int(input("Informe a quantidade do produto: "))
+    #subtotal = preco_produto * quantidade_produto
+    #total_cadastrados += subtotal
+
+    # O Dicionario é adicionada à lista de produtos
+    produtos.append(produto.copy())
 
 #Laço de repetição que permite o usuario escolha uma condição verdadeira
 while True:
