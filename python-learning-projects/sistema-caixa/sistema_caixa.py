@@ -69,13 +69,13 @@ print(f'Esse foi o total do subtotal da compra:R${total_cadastrados} ')
 for prod in produtos:
 
     #Compara os subtotais e guarda o produto com o maior valor
-    if prod[3] > subMaior:
-        subMaior = prod[3]
-        maiorSub = prod[0]
+    if prod['subtototal'] > subMaior:
+        subMaior = prod['quantidade']
+        maiorSub = prod['nome']
     # Compara as quantidades e guarda o produto com mais unidades
-    if prod[2] > unidMaior:
-        unidMaior = prod[2]
-        maiorUnid = prod[0]
+    if prod['quantidade'] > unidMaior:
+        unidMaior = prod['quantidade']
+        maiorUnid = prod['nome']
 
 
 # ===== Forma de pagamento =====
@@ -137,7 +137,7 @@ print("=" * largura)
 for numero, produto in enumerate(produtos, start=1):
 
     print(f"PRODUTO {numero}".center(largura))
-    print(f"Nome: {produto[0]}")
+    print(f"Nome: {produto}")
     print(f"Preço Unitário: R$ {produto[1]:.2f}")
     print(f"Quantidade: {produto[2]}")
     print(f"Subtotal: R$ {produto[3]:.2f}")
